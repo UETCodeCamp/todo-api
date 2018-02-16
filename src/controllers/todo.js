@@ -4,6 +4,10 @@ exports.list = (req, res) => {
 
 };
 
+exports.detail = (req, res) => {
+
+};
+
 exports.create = (req, res) => {
 
 };

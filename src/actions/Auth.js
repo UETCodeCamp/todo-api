@@ -1,5 +1,7 @@
 const JWT = require('jsonwebtoken');
 const appConfig = require('../app.config');
+const User = require('../models/User');
+const cryptoHelpers = require('../helpers/crypto');
 
 exports.isAuthorized = (token) => {
     if (token) {
@@ -19,10 +21,56 @@ exports.isAuthorized = (token) => {
     }
 };
 
-exports.signUp = ({email, name}) => {
+exports.register = ({email, password, name = ''}) => {
+    return User.findOne({
+        email
+    }).then(user => {
+        if (user) {
+            throw new Error('User exists.');
+        }
 
+        return cryptoHelpers.hashPassword(password)
+            .then(hashPassword => {
+                const u = new User({
+                    email,
+                    name,
+                    password: hashPassword
+                });
+
+                return u.save();
+            });
+    });
 };
 
-exports.signIn = ({email, password}) => {
+exports.login = ({email, password}) => {
+    return User.findOne({
+        email
+    }).then(user => {
+        if (!user) {
+            throw new Error('User not found!');
+        }
 
+        const hashPassword = user.get('password');
+
+        return cryptoHelpers.comparePassword(password, hashPassword)
+            .then(result => {
+                if (!result) {
+                    throw new Error('Your password is incorrect.');
+                }
+
+                return Promise.resolve(result);
+            })
+            .then(result => {
+                const secretKey = appConfig.get('/jwt/key');
+                const expires = appConfig.get('/jwt/expires');
+                const userId = user.get('_id');
+
+                //Generate json web token
+                const accessToken = JWT.sign({id: userId}, secretKey, {
+                    expiresIn: expires
+                });
+
+                return Promise.resolve({accessToken, user});
+            });
+    });
 };

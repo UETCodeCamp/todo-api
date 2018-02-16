@@ -1,7 +1,22 @@
 const Confidence = require('confidence');
 
 const config = {
-    secretKey: '_uet_code_camp_',
+    secretKey: process.env.UCC_SECRET_KEY || '_uet_code_camp_',
+    jwt: {
+        $filter: "env",
+        $default: {
+            key: '_uet_code_camp_',
+            expires: '7 days'
+        },
+        staging: {
+            key: process.env._UCC_SECRET_KEY || '_uet_code_camp_',
+            expires: '7 days'
+        },
+        production: {
+            key: process.env.UCC_SECRET_KEY || '_uet_code_camp_',
+            expires: '7 days'
+        }
+    },
     port: {
         $filter: "env",
         $default: 5001,

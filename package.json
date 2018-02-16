@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/UETCodeCamp/todo-api#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "colors": "^1.1.2",
     "compression": "^1.7.1",
     "confidence": "^3.0.2",
     "cors": "^2.8.4",
@@ -26,6 +28,7 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^5.0.4",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "validator": "^9.4.0"
   }
 }
