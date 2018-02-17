@@ -18,7 +18,7 @@ module.exports = (options) => {
     // If the node process ends, close the mongoose connection
     process.on('SIGINT', () => {
         Mongoose.connection.close(() => {
-            console.log('Mongo Database disconnected through app termination');
+            console.log('Mongo Database disconnected through app termination.');
             process.exit(0);
         });
     });
