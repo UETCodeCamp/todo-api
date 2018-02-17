@@ -9,7 +9,7 @@ const config = {
             expires: '7 days'
         },
         staging: {
-            key: process.env._UCC_SECRET_KEY || '_uet_code_camp_',
+            key: process.env.UCC_SECRET_KEY || '_uet_code_camp_',
             expires: '7 days'
         },
         production: {
@@ -20,14 +20,14 @@ const config = {
     port: {
         $filter: "env",
         $default: 5001,
-        staging: 5002,
-        production: 5001
+        staging: process.env.UUC_PORT_APP || 5002,
+        production: process.env.UUC_PORT_APP || 5001
     },
     mongodb: {
         $filter: "env",
         $default: 'mongodb://localhost:27017/todo_app',
-        staging: 'mongodb://localhost:27017/todo_app_dev',
-        production: 'mongodb://localhost:27017/todo_app',
+        staging: process.env.UUC_MONGODB_URI || 'mongodb://localhost:27017/todo_app_dev',
+        production: process.env.UUC_MONGODB_URI || 'mongodb://localhost:27017/todo_app',
     }
 };
 
