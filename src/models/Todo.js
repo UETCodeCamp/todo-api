@@ -15,6 +15,14 @@ const todoSchema = new Schema({
         type: Boolean,
         default: false,
         index: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
+    updated: {
+        type: Date,
+        default: Date.now
     }
 });
 
