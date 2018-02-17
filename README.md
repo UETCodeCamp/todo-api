@@ -1,6 +1,6 @@
 # Todo app API
 
-An example project REST API using NodeJS and MongoDB.
+An example REST API project using NodeJS(ExpressJS) and MongoDB.
 
 ## Features
 
