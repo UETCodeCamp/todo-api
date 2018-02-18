@@ -34,6 +34,15 @@ To install, run:
 
 `sudo npm install -g nodemon.`
 
+## Configuration
+You can add file `{environment}.env` to change configuration (with `environment = NODE_ENV`).
+
+Example: NODE_ENV=development => file name is: `development.env`
+```
+UCC_SECRET_KEY=secret_key
+UUC_PORT_APP=1234
+UUC_MONGODB_URI=mongodb://localhost:27017/todo_new_app
+```
 
 ## POSTMAN
 
