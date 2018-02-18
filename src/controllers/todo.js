@@ -71,3 +71,12 @@ exports.delete = (req, res) => {
         .then(sendSuccess(req, res))
         .catch(catchError(req, res));
 };
+
+exports.toggle = (req, res) => {
+    const userId = req['userId'];
+    const todoId = req.params['id'];
+
+    TodoActions.toggleComplete({userId, todoId})
+        .then(sendSuccess(req, res))
+        .catch(catchError(req, res));
+};

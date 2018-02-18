@@ -16,6 +16,7 @@ router.put('/todo', auth.isAuthorized, todo.create);
 router.get('/todo', auth.isAuthorized, todo.list);
 router.get('/todo/:id', auth.isAuthorized, todo.detail);
 router.post('/todo/:id', auth.isAuthorized, todo.update);
+router.post('/todo/:id/toggle', auth.isAuthorized, todo.toggle);
 router.delete('/todo/:id', auth.isAuthorized, todo.delete);
 
 /**

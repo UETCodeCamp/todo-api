@@ -59,3 +59,22 @@ exports.delete = ({userId, todoId}) => {
         owner: userId
     });
 };
+
+exports.toggleComplete = ({userId, todoId}) => {
+    return Todo.findOne({
+        _id: todoId,
+        owner: userId
+    }).then(todo => {
+        if (!todo) {
+            throw new Error('Todo not found.');
+        }
+
+        return todo.update({
+            $set: {
+                complete: !todo.get('complete')
+            }
+        }).then(() => {
+            return Todo.findById(todoId);
+        });
+    });
+};
