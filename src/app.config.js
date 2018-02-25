@@ -26,8 +26,8 @@ const config = {
     mongodb: {
         $filter: "env",
         $default: 'mongodb://localhost:27017/todo_app',
-        staging: process.env.UUC_MONGODB_URI || 'mongodb://localhost:27017/todo_app_dev',
-        production: process.env.UUC_MONGODB_URI || 'mongodb://localhost:27017/todo_app',
+        staging: process.env.UUC_MONGODB_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/todo_app_dev',
+        production: process.env.UUC_MONGODB_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/todo_app',
     }
 };
 
