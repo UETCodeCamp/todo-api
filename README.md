@@ -26,13 +26,13 @@ cd my-project
 npm install || yarn
 
 # Start your app
-node index.js
+npm start
 
 ```
 Note: I highly recommend installing [Nodemon](https://github.com/remy/nodemon). It watches for any changes in your node.js app and automatically restarts the server. Once installed, instead of node app.js use nodemon app.js. It will save you a lot of time in the long run, because you won't need to manually restart the server each time you make a small change in code.
 To install, run:
 
-`sudo npm install -g nodemon.`
+`sudo npm install -g nodemon`
 
 ## Configuration
 You can add file `{environment}.env` to change configuration (with `environment = NODE_ENV`).
