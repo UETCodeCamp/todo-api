@@ -12,12 +12,12 @@ router.get('/ping', (req, res) => res.send('pong'));
 router.post('/login', auth.login);
 router.post('/register', auth.register);
 
-router.put('/todo', auth.isAuthorized, todo.create);
-router.get('/todo', auth.isAuthorized, todo.list);
-router.get('/todo/:id', auth.isAuthorized, todo.detail);
-router.post('/todo/:id', auth.isAuthorized, todo.update);
-router.post('/todo/:id/toggle', auth.isAuthorized, todo.toggle);
-router.delete('/todo/:id', auth.isAuthorized, todo.delete);
+router.put('/todos', auth.isAuthorized, todo.create);
+router.get('/todos', auth.isAuthorized, todo.list);
+router.get('/todos/:id', auth.isAuthorized, todo.detail);
+router.post('/todos/:id', auth.isAuthorized, todo.update);
+router.post('/todos/:id/toggle', auth.isAuthorized, todo.toggle);
+router.delete('/todos/:id', auth.isAuthorized, todo.delete);
 
 /**
  * Exports.
