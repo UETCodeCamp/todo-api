@@ -20,8 +20,8 @@ const config = {
     port: {
         $filter: "env",
         $default: 5001,
-        staging: process.env.UUC_PORT_APP || 5002,
-        production: process.env.UUC_PORT_APP || 5001
+        staging: process.env.UUC_PORT_APP || process.env.PORT || 5002,
+        production: process.env.UUC_PORT_APP || process.env.PORT || 5001
     },
     mongodb: {
         $filter: "env",
