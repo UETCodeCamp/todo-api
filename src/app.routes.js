@@ -8,6 +8,7 @@ const {todo, auth} = require('./controllers');
  */
 router.get('/', (req, res) => res.send('Hello todo app.'));
 router.get('/ping', (req, res) => res.send('pong'));
+router.get('/hi', (req, res) => res.send('Welcome UET Code Camp!'));
 
 router.post('/login', auth.login);
 router.post('/register', auth.register);
