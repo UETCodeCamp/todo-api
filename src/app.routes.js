@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const lorem = require('lorem-ipsum');
 
 const auth = require('./controllers/auth');
 const todo = require('./controllers/todo');
@@ -11,6 +12,7 @@ const draft = require('./controllers/draft');
 router.get('/', (req, res) => res.send('Hello todo app.'));
 router.get('/ping', (req, res) => res.send('pong'));
 router.get('/hi', (req, res) => res.send('Welcome UET Code Camp!'));
+router.get('/lorem', (req, res) => res.send(lorem()));
 
 /**
  * Authentication
