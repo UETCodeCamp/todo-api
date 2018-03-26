@@ -64,7 +64,7 @@ exports.toggleComplete = ({todoId}) => {
 
         return todo.update({
             $set: {
-                complete: !todo.get('complete')
+                completed: !todo.get('completed')
             }
         }).then(() => {
             return TodoDraft.findById(todoId);
