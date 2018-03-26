@@ -9,15 +9,15 @@ exports.list = (req, res) => {
         limit: 10
     };
 
-    const {complete, page, limit} = Object.assign({}, defaultArgs, req.query);
+    const {completed, page, limit} = Object.assign({}, defaultArgs, req.query);
 
     let queries = {
         page: parseInt(page, 10),
         limit: parseInt(limit, 10)
     };
-    if (complete !== undefined) {
+    if (completed !== undefined) {
         queries = Object.assign({}, queries, {
-            complete: !!parseInt(complete, 10)
+            completed: !!parseInt(completed, 10)
         });
     }
 
