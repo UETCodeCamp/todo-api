@@ -14,7 +14,7 @@ exports.getListTodo = ({queries}) => {
     return TodoDraft
         .find(find)
         .sort({
-            created: 1
+            created: -1
         })
         .skip(skip)
         .limit(limit)
