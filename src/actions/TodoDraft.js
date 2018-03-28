@@ -11,7 +11,13 @@ exports.getListTodo = ({queries}) => {
         });
     }
 
-    return TodoDraft.find(find).skip(skip).limit(limit);
+    return TodoDraft
+        .find(find)
+        .sort({
+            created: 1
+        })
+        .skip(skip)
+        .limit(limit)
 };
 
 exports.detail = ({todoId}) => {

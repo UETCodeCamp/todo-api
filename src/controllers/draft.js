@@ -4,7 +4,7 @@ const {catchError, sendSuccess} = require("../helpers/response");
 exports.list = (req, res) => {
     const defaultArgs = {
         page: 1,
-        limit: 10
+        limit: 100
     };
 
     const {complete, page, limit} = Object.assign({}, defaultArgs, req.query);
