@@ -7,6 +7,14 @@ An example REST API project using NodeJS(ExpressJS) and MongoDB.
 - Local Authentication using Email and Password (Login and Register)
 - REST API: Create, update, get, list, delete todo
 
+## RESTull APIs
+|Description       | URL                  | METHOD | PAYLOAD             |    EXAMPLES                       |
+|------------------|----------------------|--------|---------------------|-----------------------------------|
+|Get list todos    | /draft?page={number} | GET    |                     |GET /draft?page=1                  |
+|Create a new todo | /draft               | POST   | {title: String}     |POST /draft data: {title: "hello"} |
+|Delete a todo     | /draft/:id           | DELETE |                     |DELETE /draft/123                  |
+|Un/Complete a todo| /draft/:id/toggle    | POST   |                     |POST /draft/123/toggle             |
+|Update a todo     | /draft/:id           | PUT    | {title: String}     |PUT /draft data: {title: "update"} |
 
 ## Prerequisites
 - [MongoDB](https://www.mongodb.org/downloads)
