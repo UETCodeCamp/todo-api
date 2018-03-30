@@ -1,4 +1,5 @@
 const TodoDraft = require('../models/TodoDraft');
+const io = require('../services/SocketServices').io();
 
 exports.getListTodo = ({queries}) => {
     const {page, limit, complete} = queries;
@@ -17,7 +18,7 @@ exports.getListTodo = ({queries}) => {
             created: -1
         })
         .skip(skip)
-        .limit(limit)
+        .limit(limit);
 };
 
 exports.detail = ({todoId}) => {
@@ -37,7 +38,12 @@ exports.create = ({title}) => {
         title,
     });
 
-    return todo.save();
+    return todo.save()
+        .then(doc => {
+            io.emit('todo-refresh', true);
+
+            return Promise.resolve(doc);
+        });
 };
 
 exports.update = ({todoId, postData}) => {
@@ -57,6 +63,10 @@ exports.update = ({todoId, postData}) => {
 exports.delete = ({todoId}) => {
     return TodoDraft.remove({
         _id: todoId
+    }).then(() => {
+        io.emit('todo-refresh', true);
+
+        return Promise.resolve(true);
     });
 };
 
@@ -75,5 +85,9 @@ exports.toggleComplete = ({todoId}) => {
         }).then(() => {
             return TodoDraft.findById(todoId);
         });
+    }).then(result => {
+        io.emit('todo-refresh', true);
+
+        return Promise.resolve(true);
     });
 };
