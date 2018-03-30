@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
 const errorHandler = require('errorhandler');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
@@ -29,10 +30,15 @@ app.use(require('./app.routes'));
 app.use(errorHandler());
 
 /**
+ * Socket
+ */
+require('./services/SocketServices').setup(server);
+
+/**
  * Start Express server.
  */
 const port = appConfig.get('/port');
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Listening on port ${port}...`);
 });
