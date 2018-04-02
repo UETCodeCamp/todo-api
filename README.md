@@ -15,6 +15,12 @@ An example REST API project using NodeJS(ExpressJS) and MongoDB.
 |Delete a todo     | /draft/:id           | DELETE |                     |DELETE /draft/123                  |
 |Un/Complete a todo| /draft/:id/toggle    | POST   |                     |POST /draft/123/toggle             |
 |Update a todo     | /draft/:id           | PUT    | {title: String}     |PUT /draft data: {title: "update"} |
+|------------------|----------------------|--------|---------------------|-----------------------------------|
+|Register          | /register            | POST   | {email: String,     |                                   |
+|                  |                      |        |  password: String,  |                                   |
+|                  |                      |        |  name: String}      |                                   |
+|Login             | /login               | POST   | {email: String,     |                                   |
+|                  |                      |        | password: String}   |                                   |
 
 ## Prerequisites
 - [MongoDB](https://www.mongodb.org/downloads)
