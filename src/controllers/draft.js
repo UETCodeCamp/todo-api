@@ -1,10 +1,10 @@
 const TodoDraftActions = require('../actions/TodoDraft');
-const {catchError, sendSuccess} = require("../helpers/response");
+const {sendError, sendSuccess} = require("../helpers/response");
 
 exports.list = (req, res) => {
     const defaultArgs = {
         page: 1,
-        limit: 10
+        limit: 20
     };
 
     const {complete, page, limit} = Object.assign({}, defaultArgs, req.query);
@@ -21,7 +21,7 @@ exports.list = (req, res) => {
 
     TodoDraftActions.getListTodo({queries})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.detail = (req, res) => {
@@ -29,7 +29,7 @@ exports.detail = (req, res) => {
 
     TodoDraftActions.detail({todoId})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.create = (req, res) => {
@@ -41,7 +41,7 @@ exports.create = (req, res) => {
 
     TodoDraftActions.create({title})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.update = (req, res) => {
@@ -54,7 +54,7 @@ exports.update = (req, res) => {
 
     TodoDraftActions.update({todoId, postData: {title}})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.delete = (req, res) => {
@@ -62,7 +62,7 @@ exports.delete = (req, res) => {
 
     TodoDraftActions.delete({todoId})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.toggle = (req, res) => {
@@ -70,5 +70,5 @@ exports.toggle = (req, res) => {
 
     TodoDraftActions.toggleComplete({todoId})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
