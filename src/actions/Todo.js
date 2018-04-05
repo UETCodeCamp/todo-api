@@ -1,15 +1,15 @@
 const Todo = require('../models/Todo');
 
 exports.getListTodo = ({userId, queries}) => {
-    const {page, limit, complete} = queries;
+    const {page, limit, completed} = queries;
     const skip = (page - 1) * limit;
 
     let find = {
         owner: userId
     };
-    if (typeof complete === 'boolean') {
+    if (typeof completed === 'boolean') {
         find = Object.assign({}, find, {
-            complete
+            completed
         });
     }
 
@@ -71,7 +71,7 @@ exports.toggleComplete = ({userId, todoId}) => {
 
         return todo.update({
             $set: {
-                completed: !todo.get('complete')
+                completed: !todo.get('completed')
             }
         }).then(() => {
             return Todo.findById(todoId);

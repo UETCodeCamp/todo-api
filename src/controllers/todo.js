@@ -1,5 +1,5 @@
 const TodoActions = require('../actions/Todo');
-const {catchError, sendSuccess} = require("../helpers/response");
+const {sendError, sendSuccess} = require("../helpers/response");
 
 exports.list = (req, res) => {
     const userId = req['userId'];
@@ -23,7 +23,7 @@ exports.list = (req, res) => {
 
     TodoActions.getListTodo({userId, queries})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.detail = (req, res) => {
@@ -32,7 +32,7 @@ exports.detail = (req, res) => {
 
     TodoActions.detail({userId, todoId})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.create = (req, res) => {
@@ -46,7 +46,7 @@ exports.create = (req, res) => {
 
     TodoActions.create({userId, title})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.update = (req, res) => {
@@ -60,7 +60,7 @@ exports.update = (req, res) => {
 
     TodoActions.update({userId, todoId, postData: {title}})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.delete = (req, res) => {
@@ -69,7 +69,7 @@ exports.delete = (req, res) => {
 
     TodoActions.delete({userId, todoId})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
 
 exports.toggle = (req, res) => {
@@ -78,5 +78,5 @@ exports.toggle = (req, res) => {
 
     TodoActions.toggleComplete({userId, todoId})
         .then(sendSuccess(req, res))
-        .catch(catchError(req, res));
+        .catch(sendError(req, res));
 };
