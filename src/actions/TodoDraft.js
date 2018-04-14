@@ -38,12 +38,7 @@ exports.create = ({title}) => {
         title,
     });
 
-    return todo.save()
-        .then(doc => {
-            io.emit('todo-refresh', true);
-
-            return Promise.resolve(doc);
-        });
+    return todo.save();
 };
 
 exports.update = ({todoId, postData}) => {
@@ -64,9 +59,10 @@ exports.delete = ({todoId}) => {
     return TodoDraft.remove({
         _id: todoId
     }).then(() => {
-        io.emit('todo-refresh', true);
-
-        return Promise.resolve(true);
+        return Promise.resolve({
+            _id: todoId,
+            deleted: true
+        });
     });
 };
 
@@ -85,9 +81,5 @@ exports.toggleComplete = ({todoId}) => {
         }).then(() => {
             return TodoDraft.findById(todoId);
         });
-    }).then(result => {
-        io.emit('todo-refresh', true);
-
-        return Promise.resolve(true);
     });
 };
